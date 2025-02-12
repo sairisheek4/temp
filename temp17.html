@@ -7,6 +7,10 @@
 </head>
 <body>
     <input type="text" id="color" placeholder="textcolor">
+    <select id="bgcolor">
+        <option>blue</option>
+        <option>red</option>
+    </select>
     <button onclick="colorchange()">submit</button>
     <br><br>
     <div id="textdiv">Hello World</div>
@@ -14,8 +18,10 @@
     
      function colorchange(){
         let colour=document.getElementById("color").value;
+        let bgcolor=document.getElementById("bgcolor").value;
             
                 textdiv.style.color=colour;
+                textdiv.style.backgroundColor=bgcolor;
             
             
             
