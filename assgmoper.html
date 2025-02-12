@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body bgcolor="pink">
+    <input type="text" id="f" placeholder="enter number">
+    <input type="text" id="s" placeholder="enter number">
+    <button onclick="operations()">submit</button>
+    <button onclick="light()">light</button>
+    <button onclick="dark()">dark</button>
+    <div id="data"></div>
+    <script>
+        function light(){
+           document.getElementById("data").style.backgroundColor="white";
+           document.getElementById("data").style.color="black";
+          // document.getElementById("data").innerText="lightmode activated"
+
+        }
+        function dark(){
+             document.getElementById("data").style.backgroundColor="black";
+           document.getElementById("data").style.color="white";
+          // document.getElementById("data").innerText="darkmode activated"
+        }
+function operations(){
+            let a=Number(document.getElementById("f").value)
+        let b=Number(document.getElementById("s").value)
+        let s=a+b
+        let d=a-b
+        let m=a*b
+        let divi=a/b
+        let r=a%b
+             data.innerHTML=`sum: ${s}<br> subtraction: ${d} <br> product: ${m}<br> divison: ${divi} <br> modulo: ${r}`
+        }
+    </script>
+</body>
+</html>

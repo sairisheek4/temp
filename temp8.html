@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let users=[]
+
+        function showdata(){
+           // alert("hello world");
+           let name=document.getElementById("name").value
+          
+           let password=document.getElementById("password").value
+           let email=document.getElementById("email").value
+           let dob=document.getElementById("dob").value
+          // data.innerHTML=name+" , "+email+" , "+password+" , "+dob
+          let user={
+            name:name,
+            email:email,
+            password:password,
+            dob:dob
+          }
+          users.push(user)
+          let length=users.length
+          let str=""
+        //   users.map(value=>{
+        //     str=str+value +"<br>";
+        //   })
+        //   data.innerHTML=str
+       for(let i=0;i<length;i++){
+        str=str+`<li>${users[i].name} -${users[i].email}</li>`
+       }
+       data.innerHTML=str
+           
+        }
+    </script>
+</head>
+<body>
+    <h1>NEW REGISTRATION PAGE</h1>
+    <P><input type="text" id="name" placeholder="name"></P>
+    <P><input type="text" id="email" placeholder="email"></P>
+    <P><input type="password" id="password" placeholder="password"></P>
+    <P><input type="datetime-local" id="dob"></P>
+    <button onclick="showdata()">register</button>
+    <hr>
+    <div id="data"></div>
+</body>
+</html>

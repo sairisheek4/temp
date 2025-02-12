@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let users=[];
+        let useremail=""
+        let username=""
+        let currentbalance=0
+        function showuser(){
+            let str="<option value=0>--select--</option>"
+            for(let i=0;i<users.length;i++){
+                str+=`<option value='${users[i].email}>'${users[i].name}>`
+            }
+            
+        }
+        function home(){
+            let str=`
+            <div style="text-align:center">
+          <h2>Welcome ${username}</h2>
+          
+         
+          <p><select id="type">
+            <option value=0>--select--</option>
+            <option value=1>deposit</option>
+            <option value=2>withdraw</option>
+            <option value=3>transfer</option>
+            </select></p>
+            <p><select id="seluser"></select></p>
+                 <p><input type="number" id="amount" placeholder="enter amount"></p>
+            <button onclick="savedata()">submit</button>
+            <button onclick="showlogin()">logout</button>
+            <div id="funds"><p>current balance:<span id="spbalance">${currentbalance}</span></p></div>
+          </div>
+            `
+          root.innerHTML=str
+        }
+
+         
+
+         function adduser(){
+            let name=document.getElementById("name").value;
+            let email=document.getElementById("email").value;
+            let password=document.getElementById("password").value;
+            let dob=document.getElementById("dob").value;
+            let user={
+                name:name,
+                email:email,
+                password:password,
+                dob:dob,
+                balance:0
+            }
+            users.push(user);
+            showlogin()
+
+         }
+
+        function showlogin(){
+            let str=`
+            <div style="text-align:center">
+                
+                <h2>Login Form</h2>
+                <div id="msg"></div>
+                <p><input type="text" id="email" placeholder="email" ></p>
+                <p><input type="password" id="password" placeholder="password"></p>
+                <button onclick="chkuser()">Login</button><br>
+               <p> <button onclick="showreg()">Create Account</button></p><hr>
+                </div>
+            `
+            showuser()
+        root.innerHTML=str
+        }
+        function showreg(){
+            let str=`
+            <div style="text-align:center">
+    <h1>User registration</h1>
+    <P><input type="text" id="name" placeholder="name"></P>
+    <P><input type="text" id="email" placeholder="email"></P>
+    <P><input type="password" id="password" placeholder="password"></P>
+    <P><input type="datetime-local" id="dob"></P>
+     <button onclick="adduser()">Submit</button><br>
+     <p>already a member? <button onclick="showlogin()">Login Here</button></p>
+     </div>
+    `
+    root.innerHTML=str
+         }
+         function chkuser(){
+            
+          let email=document.getElementById("email").value
+          let password=document.getElementById("password").value
+          for(let i=0;i<users.length;i++){
+              if(users[i].email==email && users[i].password==password){
+                useremail=email
+                username=users[i].name
+                currentbalance=users[i].balance
+                
+                home()
+              
+                break;
+              }
+              else{
+                msg.innerHTML="access denied"
+              }
+          }
+          
+         }   
+        function savedata(){
+           let amount=Number(document.getElementById("amount").value)
+           let type=document.getElementById("type").value
+           for(let i=0;i<users.length;i++){
+            if(users[i].email==useremail){
+                if(type=="1"){
+              users[i].balance+=amount
+           }
+           else if(type=="2"){
+            if(users[i].balance>amount){
+              users[i].balance-=amount
+            }
+            else{
+                funds.innerHTML="insufficient funds"
+            }
+           }
+           spbalance.innerHTML=users[i].balance
+           break;
+         
+            }
+           }
+        }
+         </script>
+</head>
+<body style="background-color: rgb(27, 51, 232);" onload="showlogin()">
+   <div ><h1>HDFC BANK</h1></div> <hr>
+    <div id="root"></div>
+    <h3><footer style="background-color: black; color: aliceblue; text-align: center;">@copyright 2004.all rights are reserved.</footer></h3>
+    
+</body>
+</html>
