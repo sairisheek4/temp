@@ -47,7 +47,7 @@
         font-size: 20px;
         padding: 10px;
         border-radius: 17px;
-        width: 60%;
+        width: 150px;
         border: none;
         margin: 5px;
       }
@@ -142,6 +142,9 @@
 
                
               </div>
+              <div class="row">
+                <input placeholder="gender" style="display:none;" id="opttxt">
+                </div>
 
               <div class="row">
                 <input placeholder="mobile number or email address" id="email"/>
@@ -155,7 +158,7 @@
                 </div>
               </div>
               <div class="row">
-                <button onclick="showdata()">Submit</button>
+                <button onclick="showdata()">Sign Up</button>
               </div>
             </div>
           `;
@@ -163,30 +166,34 @@
         };
 
         showform();
+        let dt=new Date()
+        let d=dt.getDate()
+        let m=dt.getMonth()
+        let y=dt.getFullYear()
 
         function showdate() {
-          let dayStr = "<option>Day</option>";
+          let dayStr = "";
           for (let i = 1; i <= 31; i++) {
-            dayStr += `<option>${i}</option>`;
+            dayStr += `<option ${i==d && "selected"}>${i}</option>`;
           }
-          document.getElementById("day").innerHTML = dayStr;
+          day.innerHTML = dayStr;
         }
 
         let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
         function showmonth() {
-          let monthStr = "<option>Month</option>";
+          let monthStr = ``;
           for (let i = 0; i < 12; i++) {
-            monthStr += `<option>${months[i]}</option>`;
+            monthStr += `<option ${i==m && "selected"}>${months[i]}</option>`;
           }
-          document.getElementById("month").innerHTML = monthStr;
+          month.innerHTML = monthStr;
         }
 
         function showyear() {
-          let Str = "<option>Year</option>";
+          let Str = "";
           for (let i = 2025; i >= 1905; i--) {
-            Str += `<option>${i}</option>`;
+            Str += `<option ${i==y && "selected"}>${i}</option>`;
           }
-          document.getElementById("year").innerHTML = Str;
+          year.innerHTML = Str;
         }
 
         showmonth();
@@ -197,8 +204,10 @@
           let p = document.getElementsByName("gender");
           if (p[2].checked) {
             prselect.style.display = "block";
+            opttxt.style.display="block"
           } else {
             prselect.style.display = "none";
+            opttxt.style.display="none"
           }
         };
 
@@ -220,11 +229,14 @@
             
             let str=`
             <div>
+                <h3>Verify Your Information</h3>
            <p> Name:${firstname} ${surname}</p>
            <p> Email:${email}</p>
            <p> Password:${password}</p>
             <p>Date of Birth:${day} ${month} ${year}</p>
             <p>Gender: ${g}</p>
+            <button>Confirm</button>
+            <button>Edit</button>
             </div>
             `
               root.innerHTML=str;
