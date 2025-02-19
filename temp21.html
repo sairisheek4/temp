@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="text-align: center;">
+    <div id="header" >
+    <h1>Create Account</h1>
+    <hr>
+    <input placeholder="first name">
+    <input placeholder="surname">
+    </div>
+    <div id="dob">
+        <p>
+            <select id="day"></select>
+            <select id="month" onchange='showmonth()'></select>
+            <select id="year"></select>
+        </p>
+    </div>
+
+
+    <script>
+       function showdate() {
+        let dayStr = "<option>--Select Day--</option>";
+            for (let i = 1; i <= 31; i++) {
+                dayStr += `<option value="${i}">${i}</option>`;
+            }
+            document.getElementById('day').innerHTML = dayStr;
+        }
+        window.onload = function() {
+            // populateMonth();
+            // populateYear();
+            showdate(); 
+        }
+      
+    </script>
+</body>
+</html>
