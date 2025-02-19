@@ -1,39 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body style="text-align: center;">
-    <div id="header" >
-    <h1>Create Account</h1>
-    <hr>
-    <input placeholder="first name">
-    <input placeholder="surname">
-    </div>
-    <div id="dob">
-        <p>
-            <select id="day"></select>
-            <select id="month" onchange='showmonth()'></select>
+    <style>
+      body {
+        background-color: #e9e9e9;
+      }
+      .container {
+        background-color: white;
+        border-radius: 20px;
+        padding: 10px;
+        width: 400px;
+        margin: auto;
+      }
+      .row {
+        display: flex;
+        justify-content: center;
+      }
+      .title {
+        font-size: 30px;
+        margin-top: 30px;
+      }
+      .header {
+        font-size: 50px;
+        color: blue;
+        font-weight: bold;
+        font-family: verdana;
+      }
+      .caption {
+        font-size: 20px;
+        color: gray;
+        text-align: center;
+      }
+      input,select {
+        width: 100%;
+        
+        margin: 5px;
+        border-radius: 5px;
+        padding: 5px;
+        border: 1px solid gray;
+      }
+      button {
+        color: white;
+        background-color: rgb(83, 170, 83);
+        font-size: 20px;
+        padding: 10px;
+        border-radius: 17px;
+        width: 60%;
+        border: none;
+        margin: 5px;
+      }
+      .leftcaption{
+        color: gray;
+        margin-left: 5px;
+      }
+      .qMark {
+        background-color: rgb(184, 184, 184);
+        border-radius: 20px;
+        color: white;
+        padding-left: 5px;
+        padding-right: 5px;
+        margin: 2px;
+        cursor: pointer;
+      }
+
+      .radioClass {
+        border: 1px solid gray;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin: 5px;
+        border-radius: 5px;
+        padding: 3px;
+      }
+    </style>
+  </head>
+<body >
+    <div class="container">
+        <div class="row">
+          <div class="header">fakebook</div>
+        </div>
+        <div class="row">
+          <div>
+            <div class="title">Create a new account</div>
+            <div class="caption">It's quick and easy.</div>
+          </div>
+        </div>
+        <div class="row">
+            <input placeholder="first name">
+            <input placeholder="surname">
+        </div>
+        <div class="row" style="justify-content: start;">
+            <div class="leftcaption">Date Of Birth <span class="qMark"
+                ><abbr title="Click for more information">?</abbr></span
+              ></div>
+        </div>
+        <div class="row">
+            <select id="day" ></select>
+            <select id="month" ></select>
             <select id="year"></select>
-        </p>
-    </div>
+        </div>
+
+        <div class="row" style="justify-content: start;">
+            <div class="leftcaption">Gender <span class="qMark"
+                ><abbr title="Click for more information">?</abbr></span
+              ></div>
+        </div>
+
+        <div class="row">
+            <div class="radioClass">
+                <div><label>Male</label></div>
+                <div><input type="radio" name="gender" /></div>
+              </div>
+              <div class="radioClass">
+                <div><label>Female</label></div>
+                    <div><input type="radio" name="gender" /></div>
+            </div>
+            <div class="radioClass">
+                <div><label>Custom</label></div>
+                    <div><input type="radio" name="gender" /></div>
+            </div>
+        </div>
+        <div class="row">
+            <input placeholder="mobile number or email address">
+        </div>
+        <div class="row">
+            <input type="Password" placeholder="Password">
+        </div>
+        <div class="row"  style="justify-content: start;">
+            <div class="leftcaption">people who use our services</div>
+        </div>
+        <div class="row">
+            <button>Submit</button>
+        </div>
+      </div>
+   
+    
 
 
     <script>
        function showdate() {
-        let dayStr = "<option>--Select Day--</option>";
+        let dayStr = "<option>Day</option>";
             for (let i = 1; i <= 31; i++) {
-                dayStr += `<option value="${i}">${i}</option>`;
+                dayStr += `<option>${i}</option>`;
             }
-            document.getElementById('day').innerHTML = dayStr;
+            day.innerHTML = dayStr;
         }
-        window.onload = function() {
-            // populateMonth();
-            // populateYear();
+
+        function showmonth() {
+        let monthStr = "<option>Month</option>";
+            for (let i = 1; i <= 12; i++) {
+                monthStr += `<option>${i}</option>`;
+            }
+            month.innerHTML = monthStr;
+        }
+
+        function showyear() {
+        let Str = "<option>Year</option>";
+            for (let i = 1970; i <= 2025; i++) {
+                Str += `<option >${i}</option>`;
+            }
+            year.innerHTML = Str;
+        }
+            showmonth();
+            showyear();
             showdate(); 
-        }
+        
       
     </script>
 </body>
