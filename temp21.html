@@ -34,9 +34,8 @@
         color: gray;
         text-align: center;
       }
-      input,select {
+      input, select {
         width: 100%;
-        
         margin: 5px;
         border-radius: 5px;
         padding: 5px;
@@ -52,7 +51,7 @@
         border: none;
         margin: 5px;
       }
-      .leftcaption{
+      .leftcaption {
         color: gray;
         margin-left: 5px;
       }
@@ -77,7 +76,7 @@
       }
     </style>
   </head>
-<body >
+  <body>
     <div class="container">
         <div class="row">
           <div class="header">fakebook</div>
@@ -88,87 +87,151 @@
             <div class="caption">It's quick and easy.</div>
           </div>
         </div>
-        <div class="row">
-            <input placeholder="first name">
-            <input placeholder="surname">
-        </div>
-        <div class="row" style="justify-content: start;">
-            <div class="leftcaption">Date Of Birth <span class="qMark"
-                ><abbr title="Click for more information">?</abbr></span
-              ></div>
-        </div>
-        <div class="row">
-            <select id="day" ></select>
-            <select id="month" ></select>
-            <select id="year"></select>
-        </div>
-
-        <div class="row" style="justify-content: start;">
-            <div class="leftcaption">Gender <span class="qMark"
-                ><abbr title="Click for more information">?</abbr></span
-              ></div>
-        </div>
-
-        <div class="row">
-            <div class="radioClass">
-                <div><label>Male</label></div>
-                <div><input type="radio" name="gender" /></div>
-              </div>
-              <div class="radioClass">
-                <div><label>Female</label></div>
-                    <div><input type="radio" name="gender" /></div>
-            </div>
-            <div class="radioClass">
-                <div><label>Custom</label></div>
-                    <div><input type="radio" name="gender" /></div>
-            </div>
-        </div>
-        <div class="row">
-            <input placeholder="mobile number or email address">
-        </div>
-        <div class="row">
-            <input type="Password" placeholder="Password">
-        </div>
-        <div class="row"  style="justify-content: start;">
-            <div class="leftcaption">people who use our services</div>
-        </div>
-        <div class="row">
-            <button>Submit</button>
-        </div>
-      </div>
-   
-    
-
-
+        <hr>
+    <div id="root"></div>
     <script>
-       function showdate() {
-        let dayStr = "<option>Day</option>";
-            for (let i = 1; i <= 31; i++) {
-                dayStr += `<option>${i}</option>`;
-            }
-            day.innerHTML = dayStr;
+      
+        const showform = () => {
+          let str = `
+            
+              <div class="row">
+                <input placeholder="first name" id="firstname"/>
+                <input placeholder="surname" id="surname"/>
+              </div>
+              <div class="row" style="justify-content: start;">
+                <div class="leftcaption">
+                  Date Of Birth <span class="qMark"
+                    ><abbr title="Click for more information">?</abbr></span
+                  ></div>
+              </div>
+              <div class="row">
+                <select id="day"></select>
+                <select id="month"></select>
+                <select id="year"></select>
+              </div>
+
+              <div class="row" style="justify-content: start;">
+                <div class="leftcaption">
+                  Gender <span class="qMark"
+                    ><abbr title="Click for more information">?</abbr></span
+                  ></div>
+              </div>
+
+            <div class="row">
+                <div class="radioClass">
+                  <div><label>Male</label></div>
+                  <div><input type="radio" name="gender" onclick="showbox()" /></div>
+                </div>
+                <div class="radioClass">
+                  <div><label>Female</label></div>
+                  <div><input type="radio" name="gender" onclick="showbox()" /></div>
+                </div>
+                <div class="radioClass">
+                  <div><label>Custom</label></div>
+                  <div><input type="radio" name="gender" onclick="showbox()" /></div>
+                </div>
+              </div>
+
+              <div class="row" id="pro" >
+                <select id="prselect" style="display: none;">
+                  <option>Select Your Pronoun</option>
+                  <option>He:"Wish Him a Happy Birthday"</option>
+                  <option>She:"Wish Her a Happy Birthday"</option>
+                  <option>They:"Wish Them a Happy Birthday"</option>
+                </select>
+
+               
+              </div>
+
+              <div class="row">
+                <input placeholder="mobile number or email address" id="email"/>
+              </div>
+              <div class="row">
+                <input type="Password" placeholder="Password" id="password"/>
+              </div>
+              <div class="row" style="justify-content: start;">
+                <div class="leftcaption">
+                  people who use our services may have uploaded your contact information to fakebook
+                </div>
+              </div>
+              <div class="row">
+                <button onclick="showdata()">Submit</button>
+              </div>
+            </div>
+          `;
+          root.innerHTML = str;
+        };
+
+        showform();
+
+        function showdate() {
+          let dayStr = "<option>Day</option>";
+          for (let i = 1; i <= 31; i++) {
+            dayStr += `<option>${i}</option>`;
+          }
+          document.getElementById("day").innerHTML = dayStr;
         }
 
+        let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
         function showmonth() {
-        let monthStr = "<option>Month</option>";
-            for (let i = 1; i <= 12; i++) {
-                monthStr += `<option>${i}</option>`;
-            }
-            month.innerHTML = monthStr;
+          let monthStr = "<option>Month</option>";
+          for (let i = 0; i < 12; i++) {
+            monthStr += `<option>${months[i]}</option>`;
+          }
+          document.getElementById("month").innerHTML = monthStr;
         }
 
         function showyear() {
-        let Str = "<option>Year</option>";
-            for (let i = 1970; i <= 2025; i++) {
-                Str += `<option >${i}</option>`;
-            }
-            year.innerHTML = Str;
+          let Str = "<option>Year</option>";
+          for (let i = 2025; i >= 1905; i--) {
+            Str += `<option>${i}</option>`;
+          }
+          document.getElementById("year").innerHTML = Str;
         }
-            showmonth();
-            showyear();
-            showdate(); 
-        
-      
+
+        showmonth();
+        showyear();
+        showdate();
+
+        const showbox = () => {
+          let p = document.getElementsByName("gender");
+          if (p[2].checked) {
+            prselect.style.display = "block";
+          } else {
+            prselect.style.display = "none";
+          }
+        };
+
+        const showdata=()=>{
+            let firstname=document.getElementById("firstname").value
+            let surname=document.getElementById("surname").value
+            let email=document.getElementById("email").value
+            let password=document.getElementById("password").value
+            let day=document.getElementById("day").value
+            let month=document.getElementById("month").value
+            let year=document.getElementById("year").value
+            let gender=document.getElementsByName("gender")
+            let pronoun=document.getElementById("prselect").value
+            let g=""
+            
+            if(gender[0].checked) g="Male"
+            if(gender[1].checked) g="Female"
+            if(gender[2].checked) g=pronoun
+            
+            let str=`
+            <div>
+           <p> Name:${firstname} ${surname}</p>
+           <p> Email:${email}</p>
+           <p> Password:${password}</p>
+            <p>Date of Birth:${day} ${month} ${year}</p>
+            <p>Gender: ${g}</p>
+            </div>
+            `
+              root.innerHTML=str;
+
+        }
+
+    
     </script>
-</body>
+  </body>
 </html>
