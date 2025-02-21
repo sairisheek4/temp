@@ -35,8 +35,7 @@
         text-align: center;
         margin-bottom: 5px;
       }
-      input,
-      select {
+      input,select {
         width: 100%;
         margin: 5px;
         border-radius: 5px;
@@ -48,7 +47,7 @@
         background-color: green;
         font-size: 20px;
         padding: 5px;
-        border-radius: 2px;
+        border-radius: 25px;
         width: 150px;
         border: none;
         margin: 5px;
@@ -59,12 +58,13 @@
         font-size: 10px;
       }
       .qMark {
-        background-color: green;
-        border-radius: 5px;
+        background-color: rgb(184, 184, 184);
+        border-radius: 20px;
         color: white;
         padding-left: 5px;
         padding-right: 5px;
         margin: 2px;
+        cursor: pointer;
       }
       .radioClass {
         border: 1px solid gray;
@@ -116,12 +116,22 @@
       let yy;
       let pronoun;
       let g = "";
+      let movies
+      let sports
+      let music
       const showData = () => {
         firstname = document.getElementById("firstname").value;
         surname = document.getElementById("surname").value;
         email = document.getElementById("email").value;
         password = document.getElementById("password").value;
         gender = document.getElementsByName("gender");
+       sports=document.getElementById("sports").checked
+       music=document.getElementById("music").checked
+       movies=document.getElementById("movies").checked
+       let strIntrests=""
+       if(sports) strIntrests+="Sports "
+       if(music) strIntrests+="Music"
+       if(movies) strIntrests+="Movies"
         pronoun = document.getElementById("prSelect").value;
         dd = Number(document.getElementById("day").value);
         mm = Number(document.getElementById("month").value);
@@ -132,12 +142,14 @@
         if (gender[0].checked) g = "Female";
         if (gender[1].checked) g = "Male";
         if (gender[2].checked) g = pronoun;
+        
         let str = `
           <h3>Verify your information</h3>
           <p>Name:${firstname} ${surname}</p>
           <p>Email:${email}</p>
           <p>Password:${password}</p>
           <p>Gender:${g}</p>
+          <p>Intrests:${strIntrests}</p>
           <p>Date of Birth:${dob}</p>
           <button>Confirm</button>
           <button onclick=showForm()>Edit</button>
@@ -235,20 +247,18 @@
         <div class="radioClass">
           <div><label>Movies</label></div>
           <div><input type="checkbox" ${
-            g === "Movies" && "checked"
-          } name="Intrests" /></div>
+            movies && "checked"
+          } id="movies" /></div>
         </div>
         <div class="radioClass">
           <div><label>Sports</label></div>
           <div><input type="checkbox" ${
-            g === "Male" && "checked"
-          } name="gender" onclick="togglePronoun()" /></div>
+            sports && "checked"
+          }  id="sports" /></div>
         </div>
         <div class="radioClass">
           <div><label>Music</label></div>
-          <div><input type="checkbox" ${
-            pronoun != "NA" && "checked"
-          } name="gender" onclick="togglePronoun()" /></div>
+          <div><input type="checkbox" ${music && "checked"} id="music" /></div>
         </div>
       </div>
 
@@ -282,6 +292,7 @@
         }
       };
       const togglePronoun = () => {
+        
         let p = document.getElementsByName("gender");
         if (p[2].checked) {
           prSelect.style.display = "block";
