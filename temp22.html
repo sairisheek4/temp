@@ -13,16 +13,17 @@
         let b=document.body;
         let left=0;
         let right=0
+        let up=0;
+        let down=0
        b.onkeydown=(e) =>  {
         console.log(e.key)
-        if(e.key=="ArrowRight"){
-            right+=5;
-            ball.style.right=right+"px";
-        }
-        if(e.key=="ArrowLeft"){
-            left+=5;
-            ball.style.left=left+"px";
-        }
+        if(e.key=="ArrowRight") left+=5;
+        if(e.key=="ArrowDown") down+=5;
+        if(e.key=="ArrowLeft") left-=5;
+        if(e.key=="ArrowUp") down-=5;
+
+        ball.style.left=left+"px";
+        ball.style.top=down+"px";
     }
        //b.onkeydown=(e) =>  {root.innerHTML="hello"}
     </script>
