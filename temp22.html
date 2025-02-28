@@ -7,14 +7,13 @@
 </head>
 <body>
     <div id="root"></div>
-    <img src="assets/images/ball.png" width="200px" id="ball">
+    <img src="assets/images/bucket.webp" width="100px" id="bucket">
     <script>
-        ball.style.position="absolute";
+        bucket.style.position="absolute";
         let b=document.body;
         let left=0;
-        let right=0
-        let up=0;
         let down=0
+ 
        b.onkeydown=(e) =>  {
         console.log(e.key)
         if(e.key=="ArrowRight") left+=5;
@@ -22,8 +21,8 @@
         if(e.key=="ArrowLeft") left-=5;
         if(e.key=="ArrowUp") down-=5;
 
-        ball.style.left=left+"px";
-        ball.style.top=down+"px";
+        bucket.style.left=left+"px";
+        bucket.style.top=down+"px";
     }
        //b.onkeydown=(e) =>  {root.innerHTML="hello"}
     </script>
